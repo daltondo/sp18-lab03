@@ -58,13 +58,23 @@
   "sourceMap": "",
   "deployedSourceMap": "",
   "source": "pragma solidity 0.4.19;\n\n/** @title AuctionInterface */\ncontract AuctionInterface {\n\taddress highestBidder;\n\tuint highestBid;\n\tfunction bid() payable external returns (bool);\n\tfunction reduceBid() external;\n\tfunction getHighestBidder() constant returns (address) {\n\t\treturn highestBidder;\n\t}\n\tfunction getHighestBid() constant returns (uint) {\n\t\treturn highestBid;\n\t}\n}\n",
-  "sourcePath": "/Users/daltondo/Desktop/cs_courses/blockchain_developers/lab03/contracts/AuctionInterface.sol",
+  "sourcePath": "/Users/Julian/Desktop/Classes/blockchain_developers/sp18-lab03/contracts/AuctionInterface.sol",
   "ast": {
+<<<<<<< HEAD
     "absolutePath": "/Users/daltondo/Desktop/cs_courses/blockchain_developers/lab03/contracts/AuctionInterface.sol",
     "exportedSymbols": {
       "AuctionInterface": [
         30
       ]
+=======
+    "attributes": {
+      "absolutePath": "/Users/Julian/Desktop/Classes/blockchain_developers/sp18-lab03/contracts/AuctionInterface.sol",
+      "exportedSymbols": {
+        "AuctionInterface": [
+          30
+        ]
+      }
+>>>>>>> 52002386f5883b982fbe55e00ffadeb4e52e0f04
     },
     "id": 31,
     "nodeType": "SourceUnit",
@@ -734,6 +744,15 @@
     "version": "0.4.19+commit.c4cbbb05.Emscripten.clang"
   },
   "networks": {},
+<<<<<<< HEAD
   "schemaVersion": "2.0.0",
   "updatedAt": "2018-03-01T23:26:59.166Z"
+=======
+  "schemaVersion": "1.0.1",
+<<<<<<< HEAD
+  "updatedAt": "2018-03-01T22:32:14.409Z"
+=======
+  "updatedAt": "2018-03-01T22:24:01.318Z"
+>>>>>>> 1a357b5a0d4f064b976b6937f8713ba668bc0c92
+>>>>>>> 52002386f5883b982fbe55e00ffadeb4e52e0f04
 }
