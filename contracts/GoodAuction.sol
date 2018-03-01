@@ -8,6 +8,11 @@ contract GoodAuction is AuctionInterface {
 	/* New data structure, keeps track of refunds owed */
 	mapping(address => uint) refunds;
 
+	/* */
+	// function GoodAuction() public {
+	// 	highestBid = 0;
+	// 	highestBidder = 0;
+	// }
 
 	/* 	Bid function, now shifted to pull paradigm
 		Must return true on successful send and/or bid, bidder
@@ -15,6 +20,19 @@ contract GoodAuction is AuctionInterface {
 		allow people to retrieve their funds  */
 	function bid() payable external returns(bool) {
 		// YOUR CODE HERE
+		uint sentBid = msg.value;
+
+		// If the bid is higher than previous highest, set new highest
+		if (sentBid > highestBid) {
+			refunds[highestBidder] += highestBid;
+			highestBidder = msg.sender;
+			highestBid = sentBid;
+			return true;
+		} else {
+			// If bid fails, return funds
+			msg.sender.transfer(sentBid);
+			return false;
+		}
 	}
 
 	/*  Implement withdraw function to complete new 
@@ -23,6 +41,16 @@ contract GoodAuction is AuctionInterface {
 	    or no funds owed.  */
 	function withdrawRefund() external returns(bool) {
 		// YOUR CODE HERE
+		address refunder = msg.sender;
+		uint refundAmount = refunds[refunder];
+		
+		if (refundAmount > 0) {
+			refunds[refunder] = 0;
+			refunder.transfer(refundAmount);
+			return true;
+		} else {
+			return false;
+		}
 	}
 
 	/*  Allow users to check the amount they are owed
@@ -37,6 +65,7 @@ contract GoodAuction is AuctionInterface {
 		and applying it to the reduceBid function 
 		you fill in below. */
 	modifier canReduce() {
+		require(msg.sender == highestBidder);
 		_;
 	}
 
@@ -44,7 +73,14 @@ contract GoodAuction is AuctionInterface {
 	/*  Rewrite reduceBid from BadAuction to fix
 		the security vulnerabilities. Should allow the
 		current highest bidder only to reduce their bid amount */
-	function reduceBid() external {}
+	function reduceBid() external canReduce() {
+		if (highestBid > 0) {
+			highestBid -= 1;
+			require(highestBidder.send(1));
+		} else {
+			revert();
+		}
+	}
 
 
 	/* 	Remember this fallback function
@@ -56,6 +92,7 @@ contract GoodAuction is AuctionInterface {
 
 	function () payable {
 		// YOUR CODE HERE
+		revert();
 	}
 
 }
