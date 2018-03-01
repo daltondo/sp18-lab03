@@ -23,17 +23,15 @@ contract GoodAuction is AuctionInterface {
 		allow people to retrieve their funds  */
 	function bid() payable external returns(bool) {
 		// YOUR CODE HERE
-		uint sentBid = msg.value;
-
 		// If the bid is higher than previous highest, set new highest
-		if (sentBid > highestBid) {
+		if (msg.value > highestBid) {
 			refunds[highestBidder] += highestBid;
 			highestBidder = msg.sender;
-			highestBid = sentBid;
+			highestBid = msg.value;
 			return true;
 		} else {
 			// If bid fails, return funds
-			msg.sender.transfer(sentBid);
+			msg.sender.transfer(msg.value);
 			return false;
 		}
 	}
@@ -70,7 +68,7 @@ contract GoodAuction is AuctionInterface {
 		and applying it to the reduceBid function 
 		you fill in below. */
 	modifier canReduce() {
-		require(msg.sender == highestBidder);
+		require(msg.sender == getHighestBidder());
 		_;
 	}
 
