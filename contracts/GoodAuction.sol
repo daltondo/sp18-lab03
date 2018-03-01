@@ -5,14 +5,17 @@ import "./AuctionInterface.sol";
 /** @title GoodAuction */
 contract GoodAuction is AuctionInterface {
 
+
+	/* Constructor */
+	function GoodAuction() public {
+		highestBidder = address(0);
+		highestBid = 0;
+	}
+
+
 	/* New data structure, keeps track of refunds owed */
 	mapping(address => uint) refunds;
 
-	/* */
-	// function GoodAuction() public {
-	// 	highestBid = 0;
-	// 	highestBidder = 0;
-	// }
 
 	/* 	Bid function, now shifted to pull paradigm
 		Must return true on successful send and/or bid, bidder
@@ -35,6 +38,7 @@ contract GoodAuction is AuctionInterface {
 		}
 	}
 
+
 	/*  Implement withdraw function to complete new 
 	    pull paradigm. Returns true on successful 
 	    return of owed funds and false on failure
@@ -52,6 +56,7 @@ contract GoodAuction is AuctionInterface {
 			return false;
 		}
 	}
+
 
 	/*  Allow users to check the amount they are owed
 		before calling withdrawRefund(). Function returns

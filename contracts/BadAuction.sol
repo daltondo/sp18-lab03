@@ -6,6 +6,13 @@ import "./AuctionInterface.sol";
 contract BadAuction is AuctionInterface {
 
 
+	/* Constructor */
+	function BadAuction() public {
+		highestBidder = address(0);
+		highestBid = 0;
+	}
+
+
 	/* Bid function, vulnerable to reentrency attack.
 	 * Must return true on successful send and/or bid,
 	 * bidder reassignment
