@@ -75,8 +75,8 @@ contract GoodAuction is AuctionInterface {
 		current highest bidder only to reduce their bid amount */
 	function reduceBid() external canReduce() {
 		if (highestBid > 0) {
-			highestBid -= 1;
 			require(highestBidder.send(1));
+			highestBid -= 1;
 		} else {
 			revert();
 		}
