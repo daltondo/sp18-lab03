@@ -58,10 +58,10 @@
   "sourceMap": "",
   "deployedSourceMap": "",
   "source": "pragma solidity 0.4.19;\n\n/** @title AuctionInterface */\ncontract AuctionInterface {\n\taddress highestBidder;\n\tuint highestBid;\n\tfunction bid() payable external returns (bool);\n\tfunction reduceBid() external;\n\tfunction getHighestBidder() constant returns (address) {\n\t\treturn highestBidder;\n\t}\n\tfunction getHighestBid() constant returns (uint) {\n\t\treturn highestBid;\n\t}\n}\n",
-  "sourcePath": "/Users/daltondo/Desktop/cs_courses/blockchain_developers/lab03/contracts/AuctionInterface.sol",
+  "sourcePath": "/Users/Julian/Desktop/Classes/blockchain_developers/sp18-lab03/contracts/AuctionInterface.sol",
   "ast": {
     "attributes": {
-      "absolutePath": "/Users/daltondo/Desktop/cs_courses/blockchain_developers/lab03/contracts/AuctionInterface.sol",
+      "absolutePath": "/Users/Julian/Desktop/Classes/blockchain_developers/sp18-lab03/contracts/AuctionInterface.sol",
       "exportedSymbols": {
         "AuctionInterface": [
           30
@@ -469,5 +469,5 @@
   },
   "networks": {},
   "schemaVersion": "1.0.1",
-  "updatedAt": "2018-03-01T22:15:58.751Z"
+  "updatedAt": "2018-03-01T22:32:14.409Z"
 }
